@@ -98,16 +98,16 @@ function tinhtiendien() {
     } else if (thunhapchiuthue > 210000000 && thunhapchiuthue <= 384000000) {
         tienthue = thunhapchiuthue * 20 / 100;
         document.getElementById("tienthue").innerHTML = "Họ tên:" + "\n" + hoten + "Tiền thuế thu nhập cá nhân:" + tienthue.toLocaleString();
-    }else if(thunhapchiuthue > 384000000 && thunhapchiuthue <= 624000000){
+    } else if (thunhapchiuthue > 384000000 && thunhapchiuthue <= 624000000) {
         tienthue = thunhapchiuthue * 25 / 100;
         document.getElementById("tienthue").innerHTML = "Họ tên:" + "\n" + hoten + "Tiền thuế thu nhập cá nhân:" + tienthue.toLocaleString();
-    }else if(thunhapchiuthue > 624000000 && thunhapchiuthue <= 960000000){
+    } else if (thunhapchiuthue > 624000000 && thunhapchiuthue <= 960000000) {
         tienthue = thunhapchiuthue * 25 / 100;
         document.getElementById("tienthue").innerHTML = "Họ tên:" + "\n" + hoten + "Tiền thuế thu nhập cá nhân:" + tienthue.toLocaleString();
-    }else if (thunhapchiuthue > 960000000){
+    } else if (thunhapchiuthue > 960000000) {
         tienthue = thunhapchiuthue * 20 / 100;
         document.getElementById("tienthue").innerHTML = "Họ tên:" + "\n" + hoten + "Tiền thuế thu nhập cá nhân:" + tienthue.toLocaleString();
-    }else {
+    } else {
         tienthue = 0;
         document.getElementById("tienthue").innerHTML = "Họ tên:" + "\n" + hoten + "Tiền thuế thu nhập cá nhân:" + tienthue;
     }
@@ -115,3 +115,42 @@ function tinhtiendien() {
 
 }
 document.getElementById("tinhtienthue").onclick = tinhtiendien;
+
+
+
+// bai 4
+// NHA DAN
+const PHI_XU_LY_HD_ND = 4.5; 
+const PHI_DV_CO_BAN = 20.5;
+const THUE_KENH_CAO_CAP_ND = 7.5;
+// DOANH NGHIEP
+const PHI_XU_LY_HD_DN =15;
+const THUE_KENH_CAO_CAP_DN = 50;
+const GIA_10_KET_NOI_DAU =75;
+
+function tinhtiencap() {
+    var choncap = document.getElementById("choncap").value;
+    var makhachhang = document.getElementById("makhachhang").value;
+    var sokenh = Number(document.getElementById("sokenh").value);
+    var soketnoi = Number(document.getElementById("soketnoi").value);
+
+    console.log(choncap,makhachhang,sokenh,soketnoi);
+    
+    
+    
+    if(choncap == "nhadan"){
+        tiencap = PHI_XU_LY_HD_ND + PHI_DV_CO_BAN + THUE_KENH_CAO_CAP_ND * sokenh;
+        document.getElementById("tiencap").innerHTML = "Mã khách hàng" + "\n" + makhachhang + "\nTiền cáp:" + "\n$" + tiencap.toLocaleString();
+    }else {
+        if( soketnoi > 0 && soketnoi <= 10){
+            tiencap = PHI_XU_LY_HD_DN + THUE_KENH_CAO_CAP_DN * sokenh + soketnoi*GIA_10_KET_NOI_DAU;
+            document.getElementById("tiencap").innerHTML = "Mã khách hàng" + "\n" + makhachhang + "\nTiền cáp:" + "\n$"+tiencap.toLocaleString();
+        }else {
+            tiencap = PHI_XU_LY_HD_DN + THUE_KENH_CAO_CAP_DN * sokenh + (soketnoi-10) * 5 + GIA_10_KET_NOI_DAU*10;
+            document.getElementById("tiencap").innerHTML = "Mã khách hàng" + "\n" +makhachhang + "\nTiền cáp:" + "\n$" + tiencap.toLocaleString();
+        }
+    }
+    
+   
+}
+document.getElementById("tinhtiencap").onclick = tinhtiencap;
